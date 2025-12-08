@@ -113,7 +113,31 @@ class TestSubtraction:
 
     def test_subtract_positive_numbers(self):
         """Test subtracting positive numbers."""
-        # TODO: Implement
+        # Arrange
+        calc = Calculator()
+        a = 10
+        b = 3
+        expected = 7
+
+        # Act
+        result = calc.subtract(a, b)
+
+        # Assert
+        assert result == expected
+
+    def test_subtract_negative_numbers(self):
+        """Test subtracting negative numbers."""
+        # Arrange
+        calc = Calculator()
+        a = -10
+        b = -3
+        expected = -7
+
+        # Act
+        result = calc.subtract(a, b)
+
+        # Assert
+        assert result == expected
 
 
 class TestMultiplication:
@@ -121,7 +145,31 @@ class TestMultiplication:
 
     def test_multiply_positive_numbers(self):
         """Test multiplying positive numbers."""
-        # TODO: Implement
+        # Arrange
+        calc = Calculator()
+        a = 4
+        b = 3
+        expected = 12
+
+        # Act
+        result = calc.multiply(a, b)
+
+        # Assert
+        assert result == expected
+
+    def test_multiply_with_zero(self):
+        """Test multiplying with zero."""
+        # Arrange
+        calc = Calculator()
+        a = 5
+        b = 0
+        expected = 0
+
+        # Act
+        result = calc.multiply(a, b)
+
+        # Assert
+        assert result == expected
 
 
 class TestDivision:
@@ -129,7 +177,42 @@ class TestDivision:
 
     def test_divide_positive_numbers(self):
         """Test dividing positive numbers."""
-        # TODO: Implement
+        # Arrange
+        calc = Calculator()
+        a = 10
+        b = 2
+        expected = 5
+
+        # Act
+        result = calc.divide(a, b)
+
+        # Assert
+        assert result == expected
+
+    def test_divide_by_zero(self):
+        """Test dividing by zero raises ValueError."""
+        # Arrange
+        calc = Calculator()
+        a = 10
+        b = 0
+
+        # Act & Assert
+        with pytest.raises(ValueError):
+            calc.divide(a, b)
+
+    def test_divide_floats(self):
+        """Test dividing floating point numbers."""
+        # Arrange
+        calc = Calculator()
+        a = 5.0
+        b = 2.0
+        expected = 2.5
+
+        # Act
+        result = calc.divide(a, b)
+
+        # Assert
+        assert result == pytest.approx(expected)
 
 
 
