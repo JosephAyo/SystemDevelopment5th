@@ -6,13 +6,18 @@ import pytest
 from calculator.calculator import Calculator, InvalidInputException
 
 
+@pytest.fixture
+def calc():
+    """Create a Calculator instance for tests."""
+    return Calculator()
+
+
 class TestAddition:
     """Tests for the add method."""
 
-    def test_add_positive_numbers(self):
+    def test_add_positive_numbers(self, calc):
         """Test adding two positive numbers."""
         # Arrange
-        calc = Calculator()
         a = 5
         b = 3
         expected = 8
@@ -23,10 +28,9 @@ class TestAddition:
         # Assert
         assert result == expected
 
-    def test_add_negative_numbers(self):
+    def test_add_negative_numbers(self, calc):
         """Test adding two negative numbers."""
         # Arrange
-        calc = Calculator()
         a = -5
         b = -3
         expected = -8
@@ -37,10 +41,9 @@ class TestAddition:
         # Assert
         assert result == expected
 
-    def test_add_positive_and_negative(self):
+    def test_add_positive_and_negative(self, calc):
         """Test adding positive and negative numbers."""
         # Arrange
-        calc = Calculator()
         a = 5
         b = -3
         expected = 2
@@ -51,10 +54,9 @@ class TestAddition:
         # Assert
         assert result == expected
 
-    def test_add_negative_and_positive(self):
+    def test_add_negative_and_positive(self, calc):
         """Test adding negative and positive numbers."""
         # Arrange
-        calc = Calculator()
         a = -5
         b = 3
         expected = -2
@@ -65,10 +67,9 @@ class TestAddition:
         # Assert
         assert result == expected
 
-    def test_add_positive_with_zero(self):
+    def test_add_positive_with_zero(self, calc):
         """Test adding positive number with zero."""
         # Arrange
-        calc = Calculator()
         a = 5
         b = 0
         expected = 5
@@ -79,10 +80,9 @@ class TestAddition:
         # Assert
         assert result == expected
 
-    def test_add_zero_with_positive(self):
+    def test_add_zero_with_positive(self, calc):
         """Test adding zero with positive number."""
         # Arrange
-        calc = Calculator()
         a = 0
         b = 5
         expected = 5
@@ -93,10 +93,9 @@ class TestAddition:
         # Assert
         assert result == expected
 
-    def test_add_floats(self):
+    def test_add_floats(self, calc):
         """Test adding floating point numbers."""
         # Arrange
-        calc = Calculator()
         a = 2.5
         b = 3.7
         expected = 6.2
@@ -111,10 +110,9 @@ class TestAddition:
 class TestSubtraction:
     """Tests for the subtract method."""
 
-    def test_subtract_positive_numbers(self):
+    def test_subtract_positive_numbers(self, calc):
         """Test subtracting positive numbers."""
         # Arrange
-        calc = Calculator()
         a = 10
         b = 3
         expected = 7
@@ -125,10 +123,9 @@ class TestSubtraction:
         # Assert
         assert result == expected
 
-    def test_subtract_negative_numbers(self):
+    def test_subtract_negative_numbers(self, calc):
         """Test subtracting negative numbers."""
         # Arrange
-        calc = Calculator()
         a = -10
         b = -3
         expected = -7
@@ -143,10 +140,9 @@ class TestSubtraction:
 class TestMultiplication:
     """Tests for the multiply method."""
 
-    def test_multiply_positive_numbers(self):
+    def test_multiply_positive_numbers(self, calc):
         """Test multiplying positive numbers."""
         # Arrange
-        calc = Calculator()
         a = 4
         b = 3
         expected = 12
@@ -157,10 +153,9 @@ class TestMultiplication:
         # Assert
         assert result == expected
 
-    def test_multiply_with_zero(self):
+    def test_multiply_with_zero(self, calc):
         """Test multiplying with zero."""
         # Arrange
-        calc = Calculator()
         a = 5
         b = 0
         expected = 0
@@ -175,10 +170,9 @@ class TestMultiplication:
 class TestDivision:
     """Tests for the divide method."""
 
-    def test_divide_positive_numbers(self):
+    def test_divide_positive_numbers(self, calc):
         """Test dividing positive numbers."""
         # Arrange
-        calc = Calculator()
         a = 10
         b = 2
         expected = 5
@@ -189,10 +183,9 @@ class TestDivision:
         # Assert
         assert result == expected
 
-    def test_divide_by_zero(self):
+    def test_divide_by_zero(self, calc):
         """Test dividing by zero raises ValueError."""
         # Arrange
-        calc = Calculator()
         a = 10
         b = 0
 
@@ -200,10 +193,9 @@ class TestDivision:
         with pytest.raises(ValueError):
             calc.divide(a, b)
 
-    def test_divide_floats(self):
+    def test_divide_floats(self, calc):
         """Test dividing floating point numbers."""
         # Arrange
-        calc = Calculator()
         a = 5.0
         b = 2.0
         expected = 2.5
