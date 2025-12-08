@@ -207,4 +207,28 @@ class TestDivision:
         assert result == pytest.approx(expected)
 
 
+class TestInputValidation:
+    """Tests for input validation."""
+
+    def test_input_too_large(self, calc):
+        """Test that input larger than 1,000,000 raises InvalidInputException."""
+        # Arrange
+        a = 1000001
+        b = 1
+
+        # Act & Assert
+        with pytest.raises(InvalidInputException):
+            calc.add(a, b)
+
+    def test_input_too_small(self, calc):
+        """Test that input smaller than -1,000,000 raises InvalidInputException."""
+        # Arrange
+        a = -1000001
+        b = 1
+
+        # Act & Assert
+        with pytest.raises(InvalidInputException):
+            calc.add(a, b)
+
+
 
