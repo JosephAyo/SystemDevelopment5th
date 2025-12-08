@@ -2,6 +2,19 @@
 Test suite for the Calculator class.
 """
 
+import multiprocessing
+try:
+    multiprocessing.set_start_method('fork')
+except RuntimeError:
+    pass
+
+# Patch multiprocessing.set_start_method to be a no-op.
+# This prevents a RuntimeError when mutmut tries to set the start method to 'fork'
+# where the multiprocessing context might already be initialized by pytest.
+def _noop_set_start_method(method, force=False):
+    pass
+multiprocessing.set_start_method = _noop_set_start_method
+
 import pytest
 from calculator.calculator import Calculator, InvalidInputException
 
