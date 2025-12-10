@@ -203,7 +203,7 @@ class TestDivision:
         b = 0
 
         # Act & Assert
-        with pytest.raises(ValueError):
+        with pytest.raises(ValueError, match="^Cannot divide by zero$"):
             calc.divide(a, b)
 
     def test_divide_floats(self, calc):
@@ -230,7 +230,7 @@ class TestInputValidation:
         b = 1
 
         # Act & Assert
-        with pytest.raises(InvalidInputException):
+        with pytest.raises(InvalidInputException, match="Inputs must be between -1000000 and 1000000"):
             calc.add(a, b)
 
     def test_input_too_small(self, calc):
@@ -240,8 +240,18 @@ class TestInputValidation:
         b = 1
 
         # Act & Assert
-        with pytest.raises(InvalidInputException):
+        with pytest.raises(InvalidInputException, match="Inputs must be between -1000000 and 1000000"):
             calc.add(a, b)
+
+    def test_boundary_values(self, calc):
+        """Test boundary values are accepted."""
+        # MIN_VALUE
+        assert calc.add(calc.MIN_VALUE, 0) == calc.MIN_VALUE
+        assert calc.add(0, calc.MIN_VALUE) == calc.MIN_VALUE
+
+        # MAX_VALUE
+        assert calc.add(calc.MAX_VALUE, 0) == calc.MAX_VALUE
+        assert calc.add(0, calc.MAX_VALUE) == calc.MAX_VALUE
 
 
 
