@@ -1,5 +1,7 @@
 # Calculator
 
+![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)
+
 A Python calculator implementation with comprehensive test coverage and input validation.
 This Calculator can handle the values up to 1000000 (Not implemented yet on purpose)
 
