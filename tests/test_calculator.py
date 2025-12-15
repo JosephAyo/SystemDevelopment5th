@@ -4,6 +4,9 @@ Test suite for the Calculator class.
 
 import multiprocessing
 
+import pytest
+from calculator.calculator import Calculator, InvalidInputException
+
 try:
     multiprocessing.set_start_method("fork")
 except RuntimeError:
@@ -16,11 +19,7 @@ except RuntimeError:
 def _noop_set_start_method(method, force=False):
     pass
 
-
 multiprocessing.set_start_method = _noop_set_start_method
-
-import pytest
-from calculator.calculator import Calculator, InvalidInputException
 
 
 @pytest.fixture
