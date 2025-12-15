@@ -19,6 +19,7 @@ except RuntimeError:
 def _noop_set_start_method(method, force=False):
     pass
 
+
 multiprocessing.set_start_method = _noop_set_start_method
 
 
