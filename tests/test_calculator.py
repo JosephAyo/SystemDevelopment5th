@@ -3,16 +3,20 @@ Test suite for the Calculator class.
 """
 
 import multiprocessing
+
 try:
-    multiprocessing.set_start_method('fork')
+    multiprocessing.set_start_method("fork")
 except RuntimeError:
     pass
+
 
 # Patch multiprocessing.set_start_method to be a no-op.
 # This prevents a RuntimeError when mutmut tries to set the start method to 'fork'
 # where the multiprocessing context might already be initialized by pytest.
 def _noop_set_start_method(method, force=False):
     pass
+
+
 multiprocessing.set_start_method = _noop_set_start_method
 
 import pytest
@@ -230,7 +234,9 @@ class TestInputValidation:
         b = 1
 
         # Act & Assert
-        with pytest.raises(InvalidInputException, match="Inputs must be between -1000000 and 1000000"):
+        with pytest.raises(
+            InvalidInputException, match="Inputs must be between -1000000 and 1000000"
+        ):
             calc.add(a, b)
 
     def test_input_too_small(self, calc):
@@ -240,7 +246,9 @@ class TestInputValidation:
         b = 1
 
         # Act & Assert
-        with pytest.raises(InvalidInputException, match="Inputs must be between -1000000 and 1000000"):
+        with pytest.raises(
+            InvalidInputException, match="Inputs must be between -1000000 and 1000000"
+        ):
             calc.add(a, b)
 
     def test_boundary_values(self, calc):
@@ -252,6 +260,3 @@ class TestInputValidation:
         # MAX_VALUE
         assert calc.add(calc.MAX_VALUE, 0) == calc.MAX_VALUE
         assert calc.add(0, calc.MAX_VALUE) == calc.MAX_VALUE
-
-
-
